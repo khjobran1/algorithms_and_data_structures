@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class StringsAndArrays
   class << self
     def unique_string?(str)
@@ -28,6 +26,27 @@ class StringsAndArrays
         map[el] -= 1
       end
       true
+    end
+
+    def urlify(url, length)
+      return false unless url.is_a?(String) && length.is_a?(Integer)
+      return false unless length.positive?
+      return false unless length < url.length
+
+      return false unless (url.length - length) % 3 == 0
+      num_of_spaces = (url.length - length) / 3
+
+      result = ''
+      url.each_char.with_index do |char, i|
+        break if num_of_spaces.zero? && char == ' '
+        if char == ' '
+          num_of_spaces -= 1
+          result << '%20'
+          next
+        end
+        result << char
+      end
+      result
     end
   end
 end

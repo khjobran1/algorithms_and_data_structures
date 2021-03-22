@@ -37,4 +37,18 @@ class StringsAndArraysTest < Minitest::Test
     assert_equal false, StringsAndArrays.permutations?([1], [])
     assert_equal false, StringsAndArrays.permutations?(1, [])
   end
+
+  def test_urlify
+    # correct
+    assert_equal 'kaheld%20job', StringsAndArrays.urlify('kaheld job   ', 10)
+    assert_equal 'Mr%20John%20Smith', StringsAndArrays.urlify('Mr John Smith      ', 13)
+
+    # incorrect
+    assert_equal false, StringsAndArrays.urlify('Mr John Smith J       ', 15)
+
+    # wrong input
+    assert_equal false, StringsAndArrays.urlify(1, 1) # first param is not a string
+    assert_equal false, StringsAndArrays.urlify('ddd', 0) # zero length
+    assert_equal false, StringsAndArrays.urlify('khaled jobran  ', 13) # 2 spaces at the end instead of 3
+  end
 end
