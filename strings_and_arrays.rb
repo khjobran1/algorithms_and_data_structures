@@ -77,5 +77,27 @@ class StringsAndArrays
       return map.values.sum == 2 if diff == 0
       map.values.sum == 1 || map.values.sum == -1
     end
+
+    def string_compression(str)
+      return false unless str.is_a?(String)
+
+      map = {}
+      sorted_uniq_chars = []
+      str.each_char do |char|
+        if map[char].nil?
+          sorted_uniq_chars << char
+          map[char] = 1
+          next
+        end
+        map[char] += 1
+      end
+
+      result = ''
+      sorted_uniq_chars.each do |char|
+        result << "#{char}#{map[char]}"
+      end
+      return result if result.length < str.length
+      str
+    end
   end
 end

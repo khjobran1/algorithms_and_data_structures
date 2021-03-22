@@ -62,4 +62,10 @@ class StringsAndArraysTest < Minitest::Test
     assert_equal false, StringsAndArrays.one_way('pale', 'bake')
     assert_equal false, StringsAndArrays.one_way('aaa', 'aaacc')
   end
+
+  def test_string_compression
+    assert_equal 'aabbcc', StringsAndArrays.string_compression('aabbcc') # result a2b2c2 is not shorter than input
+    assert_equal 'a5', StringsAndArrays.string_compression('aaaaa')
+    assert_equal 'a2b3c4', StringsAndArrays.string_compression('aabbbcccc')
+  end
 end
