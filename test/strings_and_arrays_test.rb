@@ -20,4 +20,21 @@ class StringsAndArraysTest < Minitest::Test
     assert_equal true, StringsAndArrays.unique_string?('khaled')
     assert_equal true, StringsAndArrays.unique_string?('ABCDEFGHIJKLMNOPQRSTU')
   end
+
+  def test_arrays_are_permutations_to_each_other
+    # correct
+    assert_equal true, StringsAndArrays.permutations?([1], [1])
+    assert_equal true, StringsAndArrays.permutations?([1, 2, 3], [3, 2, 1])
+    assert_equal true, StringsAndArrays.permutations?([1, 2, 3, 3, 3], [3, 3, 3, 2, 1])
+
+    # false
+    assert_equal false, StringsAndArrays.permutations?([1], [3])
+    assert_equal false, StringsAndArrays.permutations?([1], [1, 2])
+    assert_equal false, StringsAndArrays.permutations?([1, 2, 2], [1, 2, 3])
+
+    # wrong input
+    assert_equal false, StringsAndArrays.permutations?([], [])
+    assert_equal false, StringsAndArrays.permutations?([1], [])
+    assert_equal false, StringsAndArrays.permutations?(1, [])
+  end
 end
