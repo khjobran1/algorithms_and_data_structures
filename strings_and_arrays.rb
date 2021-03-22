@@ -99,5 +99,24 @@ class StringsAndArrays
       return result if result.length < str.length
       str
     end
+
+    def string_rotation(str, rotation_str)
+      substr = ''
+      remaining_count = 0
+      before_first_letter = true
+      rotation_str.each_char do |char|
+        if before_first_letter
+          if char == str[0]
+            before_first_letter = false
+            return false unless str.include?(substr)
+          end
+          substr << char
+        else
+          remaining_count += 1
+          return false unless char == str[remaining_count]
+        end
+      end
+      true
+    end
   end
 end

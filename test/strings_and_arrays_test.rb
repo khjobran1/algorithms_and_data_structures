@@ -68,4 +68,11 @@ class StringsAndArraysTest < Minitest::Test
     assert_equal 'a5', StringsAndArrays.string_compression('aaaaa')
     assert_equal 'a2b3c4', StringsAndArrays.string_compression('aabbbcccc')
   end
+
+  def test_string_rotation
+    assert_equal true, StringsAndArrays.string_rotation('waterbottle', 'erbottlewat')
+    assert_equal true, StringsAndArrays.string_rotation('abcd', 'cdab')
+
+    assert_equal false, StringsAndArrays.string_rotation('abc', 'bac')
+  end
 end
