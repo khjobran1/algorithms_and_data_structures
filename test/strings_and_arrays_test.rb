@@ -51,4 +51,15 @@ class StringsAndArraysTest < Minitest::Test
     assert_equal false, StringsAndArrays.urlify('ddd', 0) # zero length
     assert_equal false, StringsAndArrays.urlify('khaled jobran  ', 13) # 2 spaces at the end instead of 3
   end
+
+  def test_one_way
+    assert_equal true, StringsAndArrays.one_way('pale', 'ple')
+    assert_equal true, StringsAndArrays.one_way('pales', 'pale')
+    assert_equal true, StringsAndArrays.one_way('pale', 'bale')
+    assert_equal true, StringsAndArrays.one_way('aa', 'ab')
+    assert_equal true, StringsAndArrays.one_way('aaa', 'aa')
+
+    assert_equal false, StringsAndArrays.one_way('pale', 'bake')
+    assert_equal false, StringsAndArrays.one_way('aaa', 'aaacc')
+  end
 end

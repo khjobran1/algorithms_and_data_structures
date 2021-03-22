@@ -48,5 +48,34 @@ class StringsAndArrays
       end
       result
     end
+
+    def one_way(str1, str2)
+      return false unless str1.is_a?(String) && str1.is_a?(String)
+      diff = str1.length - str2.length
+      return false unless diff == 0 || 1 || -1
+
+      str1.downcase
+      str2.downcase
+
+      map = {}
+      str1.each_char do |char|
+        if map[char].nil?
+          map[char] = 1
+          next
+        end
+        map[char] += 1
+      end
+
+      str2.each_char do |char|
+        if map[char].nil?
+          map[char] = 1
+          next
+        end
+        map[char] -= 1
+      end
+
+      return map.values.sum == 2 if diff == 0
+      map.values.sum == 1 || map.values.sum == -1
+    end
   end
 end
